@@ -388,8 +388,6 @@ var CryptoJS = CryptoJS || function(s, p) {
     r.MD5 = t._createHelper(q);
     r.HmacMD5 = t._createHmacHelper(q)
 })(Math);
-
-window.CryptoJS = CryptoJS;
 /*
  * Fingerprintjs2 1.5.1 - Modern & flexible browser fingerprint library v2
  * https://github.com/Valve/fingerprintjs2

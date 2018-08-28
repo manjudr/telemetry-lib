@@ -134,7 +134,7 @@ module.exports = function(grunt) {
                     './core/telemetrySyncManager.js',
                     './core/telemetryV3Interface.js'
                 ],
-                dest: './build/telemetry.min.js'
+                dest: './dist/index.js'
             }
         },
         uglify: {

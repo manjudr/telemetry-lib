@@ -1,6 +1,7 @@
 /**
  * Telemetry V3 Library
- * @author Akash Gupta <Akash.Gupta@tarento.com>
+ * @author Manjunath Davanam <manjunathd@ilimi.in>
+ * @author Akash Gupta <Akash.Gupta@tarento.com> 
  */
 
 // To support for node server environment 

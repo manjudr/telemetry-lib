@@ -1,13 +1,14 @@
 {
-    "name": "telemetry-sdk",
-    "version": "1.0.0",
+    "name": "@project-sunbird/telemetry-sdk",
+    "version": "0.0.2",
     "description": "Telemetry Service javascript library helps to generate the telemetry events.",
-    "main": "core/telemetryV3Interface.js",
     "directories": {
         "example": "example",
         "test": "test"
     },
     "devDependencies": {
+        "rimraf": "2.6.2",
+        "cpy-cli": "2.0.0",
         "bower": "^1.3.3",
         "grunt": "~0.4.5",
         "grunt-aws-s3": "*",
@@ -29,19 +30,28 @@
         "grunt-contrib-concat": "1.0.1"
     },
     "scripts": {
-        "test": "telemetry"
+        "test": "telemetry",
+        "build": "node_modules/.bin/rimraf ./dist && grunt build-telemetry-lib && node_modules/.bin/cpy package.json ./dist && node_modules/.bin/cpy README.md ./dist"
     },
     "repository": {
         "type": "git",
         "url": "git+https://manjudr@github.com/manjudr/telemetry-lib.git"
     },
     "keywords": [
-        "telemetry"
+        "telemetry",
+        "project-sunbird",
+        "sunbird telemetry",
+        "telemetry-sdk",
+        "telemetry sdk"
     ],
-    "author": "Manjunath Davanam",
-    "license": "ISC",
+    "author": "Manjunath Davanam <manjunathd@ilimi.in>",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/manjudr/telemetry-lib/issues"
     },
-    "homepage": "https://github.com/manjudr/telemetry-lib#readme"
+    "homepage": "https://github.com/manjudr/telemetry-lib#readme",
+    "dependencies": {
+        "grunt-karma": "^0.12.2",
+        "karma": "^3.0.0"
+    }
 }

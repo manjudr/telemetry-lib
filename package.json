@@ -1,0 +1,26 @@
+{
+    "name": "telemetry-sdk",
+    "version": "1.0.0",
+    "description": "Telemetry Service javascript library helps to generate the telemetry events.",
+    "main": "core/telemetryV3Interface.js",
+    "directories": {
+        "example": "example",
+        "test": "test"
+    },
+    "scripts": {
+        "test": "telemetry"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://manjudr@github.com/manjudr/telemetry-lib.git"
+    },
+    "keywords": [
+        "telemetry"
+    ],
+    "author": "Manjunath Davanam",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/manjudr/telemetry-lib/issues"
+    },
+    "homepage": "https://github.com/manjudr/telemetry-lib#readme"
+}

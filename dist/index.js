@@ -1932,7 +1932,8 @@ if (typeof document != 'undefined') {
 }
 /**
  * Telemetry V3 Library
- * @author Akash Gupta <Akash.Gupta@tarento.com> and Manjunath Davanam <manjunathd@ilimi.in>
+ * @author Manjunath Davanam <manjunathd@ilimi.in>
+ * @author Akash Gupta <Akash.Gupta@tarento.com> 
  */
 
 // To support for node server environment 
@@ -1954,14 +1955,14 @@ var libraryDispatcher = {
 };
 
 
-var EkTelemetry = (function() {
-    this.ektelemetry = function() {};
+var Telemetry = (function() {
+    this.telemetry = function() {};
     var instance = function() {};
     var telemetryInstance = this;
-    this.ektelemetry.initialized = false;
-    this.ektelemetry.config = {};
-    this.ektelemetry._version = "3.0";
-    this.ektelemetry.fingerPrintId = undefined;
+    this.telemetry.initialized = false;
+    this.telemetry.config = {};
+    this.telemetry._version = "3.0";
+    this.telemetry.fingerPrintId = undefined;
     this.dispatcher = libraryDispatcher;
     this._defaultValue = {
             uid: "anonymous",
@@ -1983,15 +1984,15 @@ var EkTelemetry = (function() {
             "edata": ""
         }
     this._globalContext = {
-            "channel": 'in.ekstep',
-            "pdata": { id: "in.ekstep", ver: "1.0", pid: "" },
-            "env": "contentplayer",
-            "sid": "",
-            "did": "",
-            "cdata": [],
-            "rollup": {}
-        },
-        this.runningEnv = 'client';
+        "channel": 'in.ekstep',
+        "pdata": { id: "in.ekstep", ver: "1.0", pid: "" },
+        "env": "contentplayer",
+        "sid": "",
+        "did": "",
+        "cdata": [],
+        "rollup": {}
+    };
+    this.runningEnv = 'client';
     this.enableValidation = false;
     this._globalObject = {};
     this.startData = [];
@@ -2001,7 +2002,7 @@ var EkTelemetry = (function() {
      * Which is used to initialize the telemetry event
      * @param  {object} config - Configurations for the telemetry lib to initialize the service. " Example: config = { batchsize:10,host:"" } "
      */
-    this.ektelemetry.initialize = function(config) {
+    this.telemetry.initialize = function(config) {
         instance.init(config);
     }
 
@@ -2014,14 +2015,14 @@ var EkTelemetry = (function() {
      * @param  {object} data       [Can have userAgent,device spec object]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.start = function(config, contentId, contentVer, data, options) {
+    this.telemetry.start = function(config, contentId, contentVer, data, options) {
         data.duration = data.duration || (new Date()).getTime();
         if (contentId && contentVer) {
             telemetryInstance._globalObject.id = contentId;
             telemetryInstance._globalObject.ver = contentVer;
         }
 
-        if (!EkTelemetry.initialized && config) {
+        if (!Telemetry.initialized && config) {
             instance.init(config, contentId, contentVer)
 
         }
@@ -2036,7 +2037,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.impression = function(data, options) {
+    this.telemetry.impression = function(data, options) {
         instance.updateValues(options);
         instance._dispatch(instance.getEvent('IMPRESSION', data));
     }
@@ -2046,7 +2047,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.interact = function(data, options) {
+    this.telemetry.interact = function(data, options) {
         instance.updateValues(options);
         instance._dispatch(instance.getEvent('INTERACT', data));
     }
@@ -2056,7 +2057,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.assess = function(data, options) {
+    this.telemetry.assess = function(data, options) {
         instance.updateValues(options);
         instance._dispatch(instance.getEvent('ASSESS', data));
     }
@@ -2066,7 +2067,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.response = function(data, options) {
+    this.telemetry.response = function(data, options) {
         instance.updateValues(options);
         instance._dispatch(instance.getEvent('RESPONSE', data));
     }
@@ -2076,7 +2077,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.interrupt = function(data, options) {
+    this.telemetry.interrupt = function(data, options) {
         instance.updateValues(options);
         instance._dispatch(instance.getEvent('INTERRUPT', data));
     }
@@ -2086,7 +2087,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.feedback = function(data, options) {
+    this.telemetry.feedback = function(data, options) {
         var eksData = {
             "rating": data.rating,
             "comments": data.comments || ''
@@ -2100,7 +2101,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.share = function(data, options) {
+    this.telemetry.share = function(data, options) {
         instance.updateValues(options);
         instance._dispatch(instance.getEvent('SHARE', data));
     }
@@ -2110,7 +2111,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.audit = function(data, options) {
+    this.telemetry.audit = function(data, options) {
         instance.updateValues(options);
         instance._dispatch(instance.getEvent('AUDIT', data));
     }
@@ -2120,7 +2121,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.error = function(data, options) {
+    this.telemetry.error = function(data, options) {
         instance.updateValues(options);
         instance._dispatch(instance.getEvent('ERROR', data));
     }
@@ -2130,7 +2131,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.heartbeat = function(data, options) {
+    this.telemetry.heartbeat = function(data, options) {
         instance.updateValues(options);
         instance._dispatch(instance.getEvent('HEARTBEAT', data));
     }
@@ -2140,7 +2141,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.log = function(data, options) {
+    this.telemetry.log = function(data, options) {
         instance.updateValues(options);
         instance._dispatch(instance.getEvent('LOG', data));
     }
@@ -2150,7 +2151,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.search = function(data, options) {
+    this.telemetry.search = function(data, options) {
         instance.updateValues(options);
         instance._dispatch(instance.getEvent('SEARCH', data));
     }
@@ -2160,7 +2161,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.metrics = function(data, options) {
+    this.telemetry.metrics = function(data, options) {
         instance.updateValues(options);
         instance._dispatch(instance.getEvent('METRICS', data));
     }
@@ -2170,7 +2171,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.exdata = function(data, options) {
+    this.telemetry.exdata = function(data, options) {
         instance.updateValues(options);
         instance._dispatch(instance.getEvent('EXDATA', data));
     }
@@ -2180,7 +2181,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.summary = function(data, options) {
+    this.telemetry.summary = function(data, options) {
         instance.updateValues(options);
         instance._dispatch(instance.getEvent('SUMMARY', data));
     }
@@ -2190,7 +2191,7 @@ var EkTelemetry = (function() {
      * @param  {object} data       [data which is need to pass in this event ex: {"type":"player","mode":"ContentPlayer","pageid":"splash"}]
      * @param  {object} options    [It can have `context, object, actor` can be explicitly passed in this event]
      */
-    this.ektelemetry.end = function(data, options) {
+    this.telemetry.end = function(data, options) {
         if (telemetryInstance.startData.length) {
             var startEventObj = telemetryInstance.startData.pop();
             data.duration = ((new Date()).getTime() - startEventObj.ets)
@@ -2205,15 +2206,15 @@ var EkTelemetry = (function() {
      * Which is used to know the whether telemetry is initialized or not. 
      * @return {Boolean} 
      */
-    this.ektelemetry.isInitialized = function() {
-        return EkTelemetry.initialized;
+    this.telemetry.isInitialized = function() {
+        return Telemetry.initialized;
     }
 
     /**
      * Which is used to reset the current context
      * @param  {object} context [Context value]
      */
-    this.ektelemetry.resetContext = function(context) {
+    this.telemetry.resetContext = function(context) {
         telemetryInstance._currentContext = context || {};
     }
 
@@ -2221,7 +2222,7 @@ var EkTelemetry = (function() {
      * Which is used to reset the current object value.
      * @param  {object} object [Object value]
      */
-    this.ektelemetry.resetObject = function(object) {
+    this.telemetry.resetObject = function(object) {
             telemetryInstance._currentObject = object || {};
         },
 
@@ -2229,7 +2230,7 @@ var EkTelemetry = (function() {
          * Which is used to reset the current actor value.
          * @param  {object} object [Object value]
          */
-        this.ektelemetry.resetActor = function(actor) {
+        this.telemetry.resetActor = function(actor) {
             telemetryInstance._currentActor = actor || {};
         }
 
@@ -2238,11 +2239,11 @@ var EkTelemetry = (function() {
      * Which is used to reset the current actor value.
      * @param  {object} object [Object value]
      */
-    this.ektelemetry.resetTags = function(tags) {
+    this.telemetry.resetTags = function(tags) {
         telemetryInstance._currentTags = tags || [];
     }
 
-    this.ektelemetry.syncEvents = function() {
+    this.telemetry.syncEvents = function() {
         if (typeof TelemetrySyncManager != 'undefined') {
             TelemetrySyncManager.syncEvents();
         }
@@ -2256,7 +2257,7 @@ var EkTelemetry = (function() {
      * @param  {object} type       [object type]
      */
     instance.init = function(config, contentId, contentVer) {
-        if (EkTelemetry.initialized) {
+        if (Telemetry.initialized) {
             console.log("Telemetry is already initialized..");
             return;
         }!config && (config = {})
@@ -2267,9 +2268,9 @@ var EkTelemetry = (function() {
             telemetryInstance.enableValidation = config.enableValidation;
         }
         config.batchsize = config.batchsize ? (config.batchsize < 10 ? 10 : (config.batchsize > 1000 ? 1000 : config.batchsize)) : _defaultValue.batchsize;
-        EkTelemetry.config = Object.assign(_defaultValue, config);
-        EkTelemetry.initialized = true;
-        telemetryInstance.dispatcher = EkTelemetry.config.dispatcher ? EkTelemetry.config.dispatcher : libraryDispatcher;
+        Telemetry.config = Object.assign(_defaultValue, config);
+        Telemetry.initialized = true;
+        telemetryInstance.dispatcher = Telemetry.config.dispatcher ? Telemetry.config.dispatcher : libraryDispatcher;
         instance.updateConfigurations(config);
         console.info("Telemetry is initialized.")
     }
@@ -2290,14 +2291,14 @@ var EkTelemetry = (function() {
         }
         if (telemetryInstance.runningEnv === 'client') {
             if (!message.context.did) {
-                if (!EkTelemetry.fingerPrintId) {
-                    EkTelemetry.getFingerPrint(function(result, components) {
+                if (!Telemetry.fingerPrintId) {
+                    Telemetry.getFingerPrint(function(result, components) {
                         message.context.did = result;
-                        EkTelemetry.fingerPrintId = result;
+                        Telemetry.fingerPrintId = result;
                         dispatcher.dispatch(message);
                     })
                 } else {
-                    message.context.did = EkTelemetry.fingerPrintId;
+                    message.context.did = Telemetry.fingerPrintId;
                     dispatcher.dispatch(message);
                 }
             } else {
@@ -2317,12 +2318,12 @@ var EkTelemetry = (function() {
     instance.getEvent = function(eventId, data) {
         telemetryInstance.telemetryEnvelop.eid = eventId;
         telemetryInstance.telemetryEnvelop.ets = (new Date()).getTime();
-        telemetryInstance.telemetryEnvelop.ver = EkTelemetry._version;
+        telemetryInstance.telemetryEnvelop.ver = Telemetry._version;
         telemetryInstance.telemetryEnvelop.mid = '';
-        telemetryInstance.telemetryEnvelop.actor = Object.assign({}, { "id": EkTelemetry.config.uid || 'anonymous', "type": 'User' }, instance.getUpdatedValue('actor'));
+        telemetryInstance.telemetryEnvelop.actor = Object.assign({}, { "id": Telemetry.config.uid || 'anonymous', "type": 'User' }, instance.getUpdatedValue('actor'));
         telemetryInstance.telemetryEnvelop.context = Object.assign({}, instance.getGlobalContext(), instance.getUpdatedValue('context'));
         telemetryInstance.telemetryEnvelop.object = Object.assign({}, instance.getGlobalObject(), instance.getUpdatedValue('object'));
-        telemetryInstance.telemetryEnvelop.tags = Object.assign([], EkTelemetry.config.tags, instance.getUpdatedValue('tags'));
+        telemetryInstance.telemetryEnvelop.tags = Object.assign([], Telemetry.config.tags, instance.getUpdatedValue('tags'));
         telemetryInstance.telemetryEnvelop.edata = data;
         return telemetryInstance.telemetryEnvelop;
     }
@@ -2424,7 +2425,7 @@ var EkTelemetry = (function() {
         }
     }
 
-    this.ektelemetry.getFingerPrint = function(cb) {
+    this.telemetry.getFingerPrint = function(cb) {
         new Fingerprint2().get(function(result, components) {
             if (cb) cb(result, components)
         })
@@ -2433,14 +2434,16 @@ var EkTelemetry = (function() {
         instance.objectAssign();
     }
 
-    return this.ektelemetry;
+    return this.telemetry;
 })();
 
 /**
  * Name space which is being fallowed
  * @type {[type]}
  */
-Telemetry = $t = EkTelemetry;
+
+EkTelemetry = $t = Telemetry;
+
 
 
 /**

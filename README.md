@@ -198,6 +198,8 @@ var customDispatcher = {
 Send this object as dispatcher in the above sample configuration ("dispatcher":customDispatcher).
 
 ## How to use telemetry JS library
+  
+  **Client side**
 
 To use the telemetry JS libraries, add the following to your HTML/application. The file path is a relative path, for example; assets/js to the associated files within the html content.
 
@@ -217,11 +219,23 @@ To use the telemetry JS libraries, add the following to your HTML/application. T
           config.authToken = token;
           let startEdata = {};
           let options = {};
-          EkTelemetry.start(config, &#x22;content_id, &#x22;contetn_ver&#x22;, startEdata, options );
+          $t.start(config, &#x22;content_id, &#x22;contetn_ver&#x22;, startEdata, options );
       }
   init()
   &#x3C;/script&#x3E;
 </pre>
+
+**Server Side**
+
+  Download the telemetry-sdk npm module from [here](https://www.npmjs.com/package/@project-sunbird/telemetry-sdk) 
+  
+  ```npm i @project-sunbird/telemetry-sdk```
+  
+   **Example:**
+   ```js
+   $t = require('@project-sunbird/telemetry-sdk');   
+   $t.start(config, contentId, contentVer,data, options );
+   ```  
 
 ## Telemetry API methods
 
@@ -834,7 +848,7 @@ let data = { // Required
 
 <pre>
  @param {context} Object    - If context is undefined then library will reset to previous event context value.
- Ektelemetry.resetContext(context) 
+ $t.resetContext(context) 
 </pre>
 
 ### ResetObject
@@ -842,7 +856,7 @@ let data = { // Required
 
 <pre>
  @param {obj} Object      - If the Object is undefined then library will reset to previous event object value.
- Ektelemetry.resetObject(obj) 
+ $t.resetObject(obj) 
 </pre>
 
 ### ResetActor
@@ -850,7 +864,7 @@ let data = { // Required
 
 <pre>
  @param {actor} Object    - If the actor is undefined then library will reset to previous event actor value.
- Ektelemetry.resetActor(actor) 
+ $t.resetActor(actor) 
 </pre>
 
 ### ResetTags
@@ -858,37 +872,15 @@ let data = { // Required
 
 <pre>
  @param {tags} Array      - If tags are undefined then library will reset to previous event tags value.
- Ektelemetry.resetTags(tags) 
+ $t.resetTags(tags) 
 </pre>
 
 
 
-## ChangeLog
+## ChangeLogs
 
-  **Jan 2018**
-
-* For the `start` event, Changed the both `contentId` and `contentVer` to an optional parameters from mandtory.
- 
-* Decoupling of the both init and start methods.
-
-* Introduced new initialize method, Where user can initialize the telemetry without calling ``` start ``` event. [More details](#initialize)
-
-* Introduced new context parameter in all telemetry event methods, Where user can easily update the context value for each event.  
-
-* Introduced ``` resetContext ``` method, Which is used to reset the context to new context value/global context. [More details](developer-docs/telemetry/jslibrary/#resetcontext) 
-
-* Introduced ``` resetObject ``` method, Which is used to reset the current object value.
-[More details](developer-docs/telemetry/jslibrary/#resetobject) 
-
-* Introduced ``` resetTags ``` method, Which is used to reset the current tags value.
-[More details](developer-docs/telemetry/jslibrary/#resettags) 
-
-* Introduced ``` resetActor ``` method, Which is used to reset the current actor value.
-[More details](developer-docs/telemetry/jslibrary/#resetactor) 
-
-* Previously if the user invokes an end event then the user must and should invoke start event to initialize the telemetry. but in the updated on no need to invoke start event because telemetry is initialized globally.
-
-* Bug fixes
-
+  ******  ******
+ **In progress**
   
-  
+
+    

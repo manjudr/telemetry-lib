@@ -1,6 +1,5 @@
 
  ![](https://travis-ci.org/manjudr/telemetry-lib.svg?branch=master)
- 
  [![codecov](https://codecov.io/gh/manjudr/telemetry-lib/branch/master/graph/badge.svg)](https://codecov.io/gh/manjudr/telemetry-lib)
 
 

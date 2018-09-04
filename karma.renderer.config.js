@@ -12,21 +12,21 @@ module.exports = function(config) {
             'jasmine-matchers'
         ],
         files: [{ pattern: 'http-image/**/*', watched: false, included: false, served: true },
-            "../node_modules/jquery/dist/jquery.min.js",
-            "../libs/ajv.min.js",
-            "../libs/fingerprint2.min.js",
-            '../schema/telemetry-spec.js',
-            '../libs/md5.js',
-            '../core/telemetryV3Interface.js',
-            '../core/telemetrySyncManager.js',
-            './spec/telemetryV3Interface.spec.js',
+            "./node_modules/jquery/dist/jquery.min.js",
+            "./libs/ajv.min.js",
+            "./libs/fingerprint2.min.js",
+            './schema/telemetry-spec.js',
+            './libs/md5.js',
+            './core/telemetryV3Interface.js',
+            './core/telemetrySyncManager.js',
+            './test/spec/telemetryV3Interface.spec.js',
             //'./spec/telemetrySyncManager.spec.js',
 
         ],
         exclude: ['coverage'],
         preprocessors: {
-            '../core/telemetryV3Interface.js': ['coverage'],
-            '../core/telemetrySyncManager.js': ['coverage']
+            './core/telemetryV3Interface.js': ['coverage'],
+            './core/telemetrySyncManager.js': ['coverage']
         },
         reporters: ['verbose', 'progress', 'coverage'],
         mochaReporter: {
@@ -48,14 +48,7 @@ module.exports = function(config) {
             outputFile: 'test-results.xml',
         },
         coverageReporter: {
-            reporters: [{
-                type: 'html',
-                dir: 'coverage'
-            }, {
-                type: 'text-summary'
-            }, {
-                type: 'cobertura'
-            }]
+            reporters: [{ type: 'lcov' }]
         },
 
         plugins: [

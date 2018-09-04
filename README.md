@@ -1,4 +1,6 @@
-![](https://travis-ci.org/manjudr/telemetry-lib.svg?branch=master)
+
+ ![](https://travis-ci.org/manjudr/telemetry-lib.svg?branch=master)
+
 
 ## Need 
 

@@ -7,3 +7,4 @@ addons:
 before_script:
     - npm install
     - npm run build
+    - npm run test

@@ -11,18 +11,24 @@ module.exports = function(config) {
             'jasmine',
             'jasmine-matchers'
         ],
-        files: [{pattern: 'http-image/**/*', watched: false, included: false, served: true },
-            '../md5.js',
-            '../telemetrySyncManager.js',
-            '../telemetryV3Interface.js',
-            '../*.spec.js',
+        files: [{ pattern: 'http-image/**/*', watched: false, included: false, served: true },
+            "../node_modules/jquery/dist/jquery.min.js",
+            "../libs/ajv.min.js",
+            "../libs/fingerprint2.min.js",
+            '../schema/telemetry-spec.js',
+            '../libs/md5.js',
+            '../core/telemetryV3Interface.js',
+            '../core/telemetrySyncManager.js',
+            './spec/telemetryV3Interface.spec.js',
+            './spec/telemetrySyncManager.spec.js',
+
         ],
         exclude: ['coverage'],
         preprocessors: {
-            '../telemetryV3Interface.js' : ['coverage'],
-            '../telemetrySyncManager.js' : ['coverage']
+            '../core/telemetryV3Interface.js': ['coverage'],
+            '../core/telemetrySyncManager.js': ['coverage']
         },
-        reporters: ['verbose', 'progress', 'coverage'],      
+        reporters: ['verbose', 'progress', 'coverage'],
         mochaReporter: {
             colors: {
                 success: 'green',
@@ -38,7 +44,7 @@ module.exports = function(config) {
             }
         },
         junitReporter: {
-            outputDir: 'coverage', 
+            outputDir: 'coverage',
             outputFile: 'test-results.xml',
         },
         coverageReporter: {
@@ -64,14 +70,14 @@ module.exports = function(config) {
             "karma-mocha-reporter"
         ],
 
-        proxies: {'http-image': '/base/player/public/js/test'},
+        proxies: { 'http-image': '/base/player/public/js/test' },
         port: 8081,
         colors: true,
         logLevel: config.LOG_INFO,
-        autoWatch: true,
-        client: {captureConsole: false }, 
+        autoWatch: false,
+        client: { captureConsole: false },
         browsers: ['PhantomJS'],
-        singleRun: false,
+        singleRun: true,
         browserNoActivityTimeout: 3000
     })
 }

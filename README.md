@@ -4,6 +4,8 @@
 
 ## Need 
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/manjudr/telemetry-lib.svg)](https://greenkeeper.io/)
+
 The purpose of a standalone JS library for telemetry is to facilitate capture and distribution of telemetry data by users who would like to use their own apps, content players or portals.  
 
 We chose to use a JS library for the following reasons:

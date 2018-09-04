@@ -7,6 +7,5 @@ addons:
 before_script:
     - npm install
     - npm run build
-    - npm run test-sdk
     - npm run test
     - npm run codecov

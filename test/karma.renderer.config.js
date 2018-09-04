@@ -20,7 +20,7 @@ module.exports = function(config) {
             '../core/telemetryV3Interface.js',
             '../core/telemetrySyncManager.js',
             './spec/telemetryV3Interface.spec.js',
-            './spec/telemetrySyncManager.spec.js',
+            //'./spec/telemetrySyncManager.spec.js',
 
         ],
         exclude: ['coverage'],

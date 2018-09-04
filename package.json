@@ -32,7 +32,7 @@
         "jquery": "3.3.1"
     },
     "scripts": {
-        "test": "grunt renderer-telemetryV3",
+        "test-sdk": "grunt renderer-telemetryV3",
         "build": "node_modules/.bin/rimraf ./dist && gulp build-telemetry-schema && grunt build-telemetry-lib && node_modules/.bin/cpy package.json ./dist && node_modules/.bin/cpy README.md ./dist"
     },
     "repository": {

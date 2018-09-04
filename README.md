@@ -1,3 +1,7 @@
+
+ ![](https://travis-ci.org/manjudr/telemetry-lib.svg?branch=master)
+
+
 ## Need 
 
 The purpose of a standalone JS library for telemetry is to facilitate capture and distribution of telemetry data by users who would like to use their own apps, content players or portals.  

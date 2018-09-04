@@ -3,6 +3,15 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         version: '3.2.',
+        karma: {
+            telemetryV3: {
+                configFile: './test/karma.renderer.config.js',
+            },
+            telemetryFunV3: {
+                configFile: './test/karma.telemetry.fun.config.js',
+            }
+
+        },
         concat: {
             telemetryLib: {
                 src: [
@@ -28,11 +37,13 @@ module.exports = function(grunt) {
             }
         }
     });
-
+    grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-rename');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.registerTask('build-telemetry-lib', ['concat:telemetryLib', "uglify:authtokengenerator"]);
+    grunt.registerTask('renderer-telemetryV3', ['karma:telemetryV3']);
+    grunt.registerTask('telemetry-lib-test', ['karma:telemetryFunV3']);
+
 };

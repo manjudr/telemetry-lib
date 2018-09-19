@@ -1,6 +1,6 @@
 {
     "name": "@project-sunbird/telemetry-sdk",
-    "version": "0.0.4",
+    "version": "0.0.6",
     "description": "Telemetry Service javascript library helps to generate the telemetry events.",
     "directories": {
         "example": "example",
@@ -18,7 +18,6 @@
         "grunt-contrib-concat": "1.0.1",
         "karma": "^0.13.22",
         "karma-chrome-launcher": "^1.0.1",
-        "karma-coverage": "^1.0.0",
         "grunt-karma": "^0.12.2",
         "karma-jasmine-jquery": "^0.1.1",
         "karma-phantomjs-launcher": "^1.0.0",
@@ -30,8 +29,7 @@
         "karma-jasmine": "1.1.2",
         "jasmine-core": "3.2.1",
         "jquery": "3.3.1",
-        "codecov": "3.0.4",
-        "karma-coverage ": "1.1.2"
+        "codecov": "3.0.4"
     },
     "scripts": {
         "test": "karma start karma.renderer.config.js",
@@ -41,7 +39,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://manjudr@github.com/manjudr/telemetry-lib.git"
+        "url": "git+https://github.com/project-sunbird/sunbird-telemetry-sdk"
     },
     "keywords": [
         "telemetry",
@@ -59,11 +57,11 @@
     "author": "Manjunath Davanam <manjunathd@ilimi.in>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/manjudr/telemetry-lib/issues"
+        "url": "https://github.com/project-sunbird/sunbird-telemetry-sdk"
     },
-    "homepage": "https://github.com/manjudr/telemetry-lib#readme",
+    "homepage": "https://github.com/project-sunbird/sunbird-telemetry-sdk/tree/master/js#readme",
     "dependencies": {
-        "grunt-karma": "^0.12.2",
-        "karma": "^3.0.0"
+        "ajv": "6.5.3",
+        "karma-coverage": "1.1.2"
     }
 }
